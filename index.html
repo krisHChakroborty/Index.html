@@ -2,129 +2,88 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Valentine’s Dice Offer</title>
+<title>FIRST WAVE FRIES - Valentine’s Dice Offer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-html, body {margin:0;padding:0;height:100%;font-family:'Poppins', sans-serif;}
-body {
-  display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
-  background: linear-gradient(135deg,#ff6b81,#feca57);
-  color:#fff;text-align:center;overflow-x:hidden;
-}
-
-h1 {margin:10px 0;font-size:2.5em;text-shadow: 2px 2px 5px #ff385c;}
+html, body {margin:0;padding:0;height:100%;font-family:Arial,sans-serif;}
+body {display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background:linear-gradient(135deg,#ff4d6d,#ff9a9e);color:#fff;text-align:center;overflow-x:hidden;}
+h1 {margin:10px 0;font-size:2.2em;}
+h2 {margin:5px 0;font-weight:normal;font-size:1.2em;}
 .container {width:95%;max-width:1200px;flex:1;display:flex;flex-direction:column;align-items:center;}
-
-.card {
-  background: linear-gradient(145deg, #fff, #ffe6e6);
-  color:#333;
-  border-radius:20px;
-  padding:25px;
-  margin:20px 0;
-  width:100%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-.card:hover {transform: translateY(-5px) scale(1.02);}
-
-input {
-  padding:18px;font-size:18px;border-radius:12px;border:1px solid #ccc;
-  margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;
-  text-align:center;
-}
-button {
-  background: #ff4d6d;
-  color: #fff;
-  border:none;
-  padding:18px 45px;
-  font-size:18px;
-  border-radius:12px;
-  cursor:pointer;
-  margin-top:10px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-  transition: 0.3s;
-}
-button:hover {transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.4);}
-button:disabled {background:#aaa; cursor:not-allowed; box-shadow:none;}
-
-.scene {
-  perspective:1000px;height:250px;display:flex;justify-content:center;align-items:center;margin:20px 0;
-}
-.cube {
-  width:120px;height:120px;position:relative;transform-style:preserve-3d;
-  transform: rotateX(-20deg) rotateY(20deg);
-  transition: transform 1s ease-out;
-}
-.face {
-  position:absolute;width:120px;height:120px;background:#ffb6b9;
-  border-radius:15px;border:2px solid #ff6b81;
-  display:flex;align-items:center;justify-content:center;
-  font-size:60px;font-weight:bold;color:#fff;
-  text-shadow:2px 2px 5px #ff385c;
-  box-shadow: inset 0 5px 15px rgba(255,255,255,0.3),
-              0 5px 15px rgba(0,0,0,0.2);
-}
+.card {background:#fff;color:#333;border-radius:16px;padding:20px;margin:15px 0;width:100%;box-sizing:border-box;}
+table {width:100%;border-collapse:collapse;margin-top:10px;font-size:1em;}
+th,td {border:1px solid #ddd;padding:10px;}
+th {background:#ff4d6d;color:#fff;}
+.scene {perspective:900px;height:250px;display:flex;justify-content:center;align-items:center;margin:20px 0;}
+.cube {width:120px;height:120px;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(20deg);}
+.face {position:absolute;width:120px;height:120px;background:white;border-radius:12px;border:2px solid #eee;display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:bold;color:#ff4d6d;}
 .face1 {transform:rotateX(0deg) translateZ(60px);}
 .face2 {transform:rotateX(180deg) translateZ(60px);}
 .face3 {transform:rotateY(90deg) translateZ(60px);}
 .face4 {transform:rotateY(-90deg) translateZ(60px);}
 .face5 {transform:rotateX(90deg) translateZ(60px);}
 .face6 {transform:rotateX(-90deg) translateZ(60px);}
-
 .roll {animation:fastRoll 2s ease-in-out;}
-@keyframes fastRoll {
-  0%{transform:translateY(0) rotateX(0) rotateY(0);}
-  20%{transform:translateY(-80px) rotateX(360deg) rotateY(360deg);}
-  40%{transform:translateY(0) rotateX(720deg) rotateY(720deg);}
-  60%{transform:translateY(-50px) rotateX(1080deg) rotateY(1080deg);}
-  80%{transform:translateY(0) rotateX(1440deg) rotateY(1440deg);}
-  100%{transform:translateY(0) rotateX(1800deg) rotateY(1800deg);}
-}
+@keyframes fastRoll {0%{transform:translateY(0) rotateX(0) rotateY(0);}20%{transform:translateY(-80px) rotateX(360deg) rotateY(360deg);}40%{transform:translateY(0) rotateX(720deg) rotateY(720deg);}60%{transform:translateY(-50px) rotateX(1080deg) rotateY(1080deg);}80%{transform:translateY(0) rotateX(1440deg) rotateY(1440deg);}100%{transform:translateY(0) rotateX(1800deg) rotateY(1800deg);}}
 
-.resultCard {
-  margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;
-  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
-  color:#333;padding:18px;border-radius:15px;
-  display:inline-block;line-height:1.4;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-}
+/* Header Dice Animation */
+.header-dice {display:flex;justify-content:center;gap:15px;margin-bottom:10px;}
+.dice {width:50px;height:50px;animation:jump 1s ease-in-out infinite;}
+.dice:nth-child(2) {animation-delay:0.1s;}
+.dice:nth-child(3) {animation-delay:0.2s;}
+.dice:nth-child(4) {animation-delay:0.3s;}
+.dice:nth-child(5) {animation-delay:0.4s;}
+.dice:nth-child(6) {animation-delay:0.5s;}
+@keyframes jump {0%,100% {transform:translateY(0);}50% {transform:translateY(-15px);}}
 
-@media(max-width:700px){
-  .cube{width:100px;height:100px;}
-  .face{width:100px;height:100px;font-size:50px;}
-  input{width:80%;font-size:16px;}
-  button{padding:14px 35px;font-size:16px;}
-}
+input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;}
+button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
+button:disabled {background:#aaa;}
+.resultCard {margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;background:#ffe6e6;color:#333;padding:15px;border-radius:12px;display:inline-block;line-height:1.4;}
+@media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
 </style>
 </head>
 <body>
 
-<h1>🎲 Student Dice Roll 🎲</h1>
+<!-- Animated Dice in Header -->
+<div class="header-dice">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Dice-1-b.svg" class="dice" alt="Dice 1">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Dice-2-b.svg" class="dice" alt="Dice 2">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Dice-3-b.svg" class="dice" alt="Dice 3">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Dice-4-b.svg" class="dice" alt="Dice 4">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Dice-5-b.svg" class="dice" alt="Dice 5">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Dice-6-b.svg" class="dice" alt="Dice 6">
+</div>
+
+<h1>❤️ STUDENTS - Valentine’s Day Special ❤️</h1>
+<h2>FIRST WAVE FRIES</h2>
 
 <div class="container">
 
 <div class="card">
-<h3>📊 Discount Chart (Numbers Only)</h3>
+<h3>🎁 Discount Chart</h3>
 <div style="overflow-x:auto;">
 <table>
-<tr><th>Serial</th><th>Item Code</th><th>Discount</th></tr>
-<tr><td>1</td><td>101</td><td>10%</td></tr>
-<tr><td>2</td><td>102</td><td>15%</td></tr>
-<tr><td>3</td><td>103</td><td>20%</td></tr>
-<tr><td>4</td><td>104</td><td>50%</td></tr>
-<tr><td>5</td><td>105</td><td>25%</td></tr>
-<tr><td>6</td><td>106</td><td>30%</td></tr>
+<tr><th>Serial</th><th>Item</th><th>Discount</th></tr>
+<tr><td>1</td><td>Burgers</td><td>10% OFF</td></tr>
+<tr><td>2</td><td>Rolls</td><td>15% OFF</td></tr>
+<tr><td>3</td><td>French Fries</td><td>20% OFF</td></tr>
+<tr><td>4</td><td>Ice Creams</td><td>Buy 1 Get 1 Free</td></tr>
+<tr><td>5</td><td>Milkshakes</td><td>25% OFF</td></tr>
+<tr><td>6</td><td>Vada Pav / Chocolate Bun</td><td>₹30 OFF</td></tr>
 </table>
 </div>
 </div>
 
 <div class="card">
-<h3>🔢 Enter Your Student ID</h3>
+<h3>📝 Enter Your Details</h3>
+<input type="text" id="studentName" placeholder="Your Name (Letters only)" 
+       oninput="this.value = this.value.replace(/[^A-Za-z\s]/g,'')">
 <input type="text" id="studentID" placeholder="Student ID (Numbers only)" 
        oninput="this.value = this.value.replace(/[^0-9]/g,'')"><br>
-<button id="btn" onclick="rollDice()" disabled>ROLL DICE 🎲</button>
+<button id="btn" onclick="rollDice()" disabled>SHAKE DICE 🎲</button>
 </div>
 
 <div class="card">
@@ -146,6 +105,7 @@ button:disabled {background:#aaa; cursor:not-allowed; box-shadow:none;}
 </div>
 
 <script>
+// Dice rotations
 const diceRotations = {
 1: "rotateX(0deg) rotateY(0deg)",
 2: "rotateX(180deg) rotateY(0deg)",
@@ -155,48 +115,55 @@ const diceRotations = {
 6: "rotateX(90deg) rotateY(0deg)"
 };
 
+// Offers
 const offers = {
-1: "10% OFF on Item 101",
-2: "15% OFF on Item 102",
-3: "20% OFF on Item 103",
-4: "50% OFF on Item 104",
-5: "25% OFF on Item 105",
-6: "30% OFF on Item 106"
+1: "10% OFF on Burgers 🍔",
+2: "15% OFF on Rolls 🌯",
+3: "20% OFF on French Fries 🍟",
+4: "Buy 1 Get 1 Free on Ice Creams 🍨",
+5: "25% OFF on Milkshakes 🥤",
+6: "₹30 OFF on Vada Pav / Chocolate Bun 🍫"
 };
 
+const nameInput = document.getElementById("studentName");
 const idInput = document.getElementById("studentID");
 const shakeBtn = document.getElementById("btn");
 const resultCard = document.getElementById("resultCard");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// Enable Shake button only if input filled
-idInput.addEventListener("input", () => {
-    shakeBtn.disabled = !(idInput.value.trim());
-});
+// Enable Shake button only if inputs are filled
+function validateInputs() {
+    shakeBtn.disabled = !(nameInput.value.trim() && idInput.value.trim());
+}
+[nameInput, idInput].forEach(input => input.addEventListener("input", validateInputs));
 
 // Check if student already rolled
 function checkStudent() {
-    const key = "rolled_" + idInput.value.trim();
+    const key = "rolled_" + nameInput.value.trim() + "_" + idInput.value.trim();
     if(localStorage.getItem(key)) {
         shakeBtn.disabled = true;
+        nameInput.disabled = true;
         idInput.disabled = true;
         resultCard.style.display = "block";
-        resultCard.innerHTML = "✅ Already rolled!";
+        resultCard.innerHTML = "✅ You have already rolled the dice!";
         downloadBtn.style.display="none";
     }
 }
+nameInput.addEventListener("blur", checkStudent);
 idInput.addEventListener("blur", checkStudent);
 
 // Roll dice
 function rollDice() {
-    const studentKey = "rolled_" + idInput.value.trim();
+    const studentKey = "rolled_" + nameInput.value.trim() + "_" + idInput.value.trim();
     if(localStorage.getItem(studentKey)) {
-        alert("Already rolled! 🎲");
+        alert("You already rolled! 🎲");
         shakeBtn.disabled = true;
         return;
     }
+
     localStorage.setItem(studentKey,"true");
     shakeBtn.disabled = true;
+    nameInput.disabled = true;
     idInput.disabled = true;
 
     const cube = document.getElementById("cube");
@@ -216,26 +183,47 @@ function rollDice() {
 
         resultCard.style.display = "block";
         resultCard.innerHTML = `
+        🎉 Name: ${nameInput.value}<br>
         🎉 ID: ${idInput.value}<br>
         🎲 Dice Result: ${final}<br>
         🏷 Offer: ${offers[final]}<br>
-        🎊 Congrats!<br>
-        📌 Click "Download Result" to save.
+        🎊 Congratulations!<br>
+        📌 Click "Download Result" to save your offer.
         `;
+
         downloadBtn.style.display = "inline-block";
     },2500);
 }
 
 // Download result as image
 function downloadResult() {
+    resultCard.innerHTML += `<br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this at counter before billing.`;
+
     html2canvas(resultCard).then(canvas=>{
         const link = document.createElement("a");
-        link.download = `${idInput.value}_offer.png`;
+        link.download = `${nameInput.value}_${idInput.value}_offer.png`;
         link.href = canvas.toDataURL();
         link.click();
         downloadBtn.style.display="none";
     });
 }
+
+// Optional: animate header dice randomly
+const headerDice = document.querySelectorAll('.header-dice .dice');
+setInterval(() => {
+  headerDice.forEach(dice => {
+    const num = Math.floor(Math.random()*6)+1;
+    const urls = {
+      1:"1/1b/Dice-1-b.svg",
+      2:"5/5a/Dice-2-b.svg",
+      3:"2/26/Dice-3-b.svg",
+      4:"5/50/Dice-4-b.svg",
+      5:"b/b1/Dice-5-b.svg",
+      6:"2/26/Dice-6-b.svg"
+    };
+    dice.src = `https://upload.wikimedia.org/wikipedia/commons/${urls[num]}`;
+  });
+}, 500);
 </script>
 
 </body>
