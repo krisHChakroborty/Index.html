@@ -31,7 +31,7 @@ th {background:#ff4d6d;color:#fff;}
 input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;}
 button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
 button:disabled {background:#aaa;}
-.resultCard {margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;background:#ffefef;color:#333;padding:15px;border-radius:12px;display:inline-block;}
+.resultCard {margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;background:#ffe6e6;color:#333;padding:15px;border-radius:12px;display:inline-block;line-height:1.4;}
 .note {font-size:16px;color:#555;margin-top:10px;}
 @media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
 </style>
@@ -125,6 +125,7 @@ function checkStudent() {
         idInput.disabled = true;
         resultCard.style.display = "block";
         resultCard.innerHTML = "✅ You have already rolled the dice!";
+        downloadBtn.style.display="none";
     }
 }
 nameInput.addEventListener("blur", checkStudent);
