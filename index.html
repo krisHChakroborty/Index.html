@@ -5,6 +5,9 @@
 <title>FIRST WAVE FRIES - Valentine’s Dice Offer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- html2canvas for capturing popup -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
 html, body {
     margin: 0;
@@ -152,6 +155,47 @@ button:disabled {
     margin-top: 10px;
 }
 
+/* Popup style */
+#popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #333;
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    z-index: 9999;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+#popup img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px 0;
+}
+
+#popup button {
+    background: #28a745;
+    margin-top: 10px;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
 /* Responsive adjustments */
 @media (max-width: 700px) {
     .cube {
@@ -175,8 +219,6 @@ button:disabled {
         font-size: 0.85em;
         padding: 6px;
     }
-    h1 { font-size: 1.8em; }
-    h2 { font-size: 1em; }
 }
 </style>
 </head>
@@ -224,11 +266,21 @@ button:disabled {
     </div>
     <div class="result" id="result"></div>
     <div class="note">
-        📸 Screenshot your lucky number!<br>
+        📸 Screenshot or download your lucky number card!<br>
         🎓 Show Student ID + Screenshot before billing
     </div>
 </div>
 
+</div>
+
+<!-- Popup -->
+<div class="overlay" id="overlay"></div>
+<div id="popup">
+    <h2>🎉 Congratulations! 🎉</h2>
+    <p id="popupText"></p>
+    <img id="popupImg" src="" alt="Offer Image">
+    <br>
+    <button onclick="downloadPopup()">💾 Download</button>
 </div>
 
 <script>
@@ -244,18 +296,23 @@ const diceRotations = {
 
 // Discount offers
 const offers = {
-    1: "10% OFF on Burgers 🍔",
-    2: "15% OFF on Rolls 🌯",
-    3: "20% OFF on French Fries 🍟",
-    4: "Buy 1 Get 1 Free on Ice Creams 🍨",
-    5: "25% OFF on Milkshakes 🥤",
-    6: "₹30 OFF on Vada Pav / Chocolate Bun 🍫"
+    1: {text: "10% OFF on Burgers 🍔", img:"https://i.imgur.com/U6Wk0z1.png"},
+    2: {text: "15% OFF on Rolls 🌯", img:"https://i.imgur.com/T8FZJ6S.png"},
+    3: {text: "20% OFF on French Fries 🍟", img:"https://i.imgur.com/kqHvj3g.png"},
+    4: {text: "Buy 1 Get 1 Free on Ice Creams 🍨", img:"https://i.imgur.com/Mp5RZ2Y.png"},
+    5: {text: "25% OFF on Milkshakes 🥤", img:"https://i.imgur.com/EcB2Jo2.png"},
+    6: {text: "₹30 OFF on Vada Pav / Chocolate Bun 🍫", img:"https://i.imgur.com/AG8C6vE.png"}
 };
 
 const nameInput = document.getElementById("studentName");
 const idInput = document.getElementById("studentID");
 const shakeBtn = document.getElementById("btn");
 const result = document.getElementById("result");
+
+const popup = document.getElementById("popup");
+const overlay = document.getElementById("overlay");
+const popupText = document.getElementById("popupText");
+const popupImg = document.getElementById("popupImg");
 
 // Enable button only if both inputs filled
 [nameInput, idInput].forEach(input => {
@@ -295,11 +352,32 @@ function rollDice() {
         cube.style.transform = diceRotations[final];
 
         result.innerHTML = `🎉 Congratulations, ${nameInput.value}! 😀<br>
-        You got Serial No. ${final} — ${offers[final]}`;
+        You got Serial No. ${final} — ${offers[final].text}`;
 
-        shakeBtn.disabled = true;
+        // Show popup
+        popupText.innerHTML = `${nameInput.value} (${idInput.value})<br>${offers[final].text}`;
+        popupImg.src = offers[final].img;
+        overlay.style.display = "block";
+        popup.style.display = "block";
     }, 2500);
 }
+
+// Download popup as image
+function downloadPopup() {
+    html2canvas(popup).then(canvas => {
+        const link = document.createElement("a");
+        const fileName = `${nameInput.value}_${idInput.value}.png`;
+        link.download = fileName;
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+
+// Close popup on overlay click
+overlay.addEventListener("click", () => {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+});
 </script>
 
 </body>
