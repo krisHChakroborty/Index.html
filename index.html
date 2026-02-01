@@ -31,11 +31,8 @@ th {background:#ff4d6d;color:#fff;}
 input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;}
 button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
 button:disabled {background:#aaa;}
-.result {margin-top:15px;font-size:22px;font-weight:bold;word-wrap:break-word;}
+.resultCard {margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;background:#ffefef;color:#333;padding:15px;border-radius:12px;display:inline-block;}
 .note {font-size:16px;color:#555;margin-top:10px;}
-#popup {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#333;border-radius:20px;padding:20px;width:90%;max-width:420px;z-index:9999;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.5);}
-#popup img {width:180px;height:180px;object-fit:cover;margin:15px 0;border-radius:12px;background:#f9f9f9;}
-.overlay {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;}
 @media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
 </style>
 </head>
@@ -80,20 +77,11 @@ button:disabled {background:#aaa;}
 <div class="face face6">6</div>
 </div>
 </div>
-<div class="result" id="result"></div>
-<div class="note">📸 Download your lucky card and show before billing</div>
+<div class="resultCard" id="resultCard" style="display:none;"></div>
+<button id="downloadBtn" style="display:none;margin-top:10px;" onclick="downloadResult()">💾 Download Result</button>
+<div class="note">📸 Show this at the counter before billing</div>
 </div>
 
-</div>
-
-<!-- Popup -->
-<div class="overlay" id="overlay"></div>
-<div id="popup">
-<h2>🎉 Congrats! 🎉</h2>
-<p id="popupText"></p>
-<img id="popupImg" src="https://i.imgur.com/1S2z9cR.png" alt="Congratulations">
-<br>
-<button onclick="downloadPopup()">💾 Download Card</button>
 </div>
 
 <script>
@@ -120,14 +108,13 @@ const offers = {
 const nameInput = document.getElementById("studentName");
 const idInput = document.getElementById("studentID");
 const shakeBtn = document.getElementById("btn");
-const result = document.getElementById("result");
-const popup = document.getElementById("popup");
-const overlay = document.getElementById("overlay");
-const popupText = document.getElementById("popupText");
-const popupImg = document.getElementById("popupImg");
+const resultCard = document.getElementById("resultCard");
+const downloadBtn = document.getElementById("downloadBtn");
 
 // Enable button if both inputs filled
-[nameInput,idInput].forEach(input=>{input.addEventListener("input",()=>{shakeBtn.disabled=!(nameInput.value.trim()&&idInput.value.trim())})});
+[nameInput,idInput].forEach(input=>{
+    input.addEventListener("input",()=>{shakeBtn.disabled=!(nameInput.value.trim()&&idInput.value.trim())});
+});
 
 // Check localStorage to disable fields if student already rolled
 function checkStudent() {
@@ -136,7 +123,8 @@ function checkStudent() {
         shakeBtn.disabled = true;
         nameInput.disabled = true;
         idInput.disabled = true;
-        result.innerHTML = "✅ You have already rolled the dice!";
+        resultCard.style.display = "block";
+        resultCard.innerHTML = "✅ You have already rolled the dice!";
     }
 }
 nameInput.addEventListener("blur", checkStudent);
@@ -170,30 +158,30 @@ function rollDice() {
         const final=Math.floor(Math.random()*6)+1;
         cube.style.transform=diceRotations[final];
 
-        result.innerHTML=`🎉 ${nameInput.value}, You got Serial No. ${final} — ${offers[final]}`;
+        resultCard.style.display = "block";
+        resultCard.innerHTML = `
+        🎉 Name: ${nameInput.value}<br>
+        🎉 ID: ${idInput.value}<br>
+        🎲 Dice Result: ${final}<br>
+        🏷 Offer: ${offers[final]}<br>
+        🎊 Congratulations!<br>
+        📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this at counter before billing.
+        `;
 
-        // Show popup
-        popupText.innerHTML=`${nameInput.value} (${idInput.value})<br>${offers[final]}`;
-        overlay.style.display="block";
-        popup.style.display="block";
+        downloadBtn.style.display = "inline-block";
     },2500);
 }
 
-// Download popup
-function downloadPopup() {
-    html2canvas(popup).then(canvas=>{
-        const link=document.createElement("a");
-        link.download=`${nameInput.value}_${idInput.value}.png`;
-        link.href=canvas.toDataURL();
+// Download result as image
+function downloadResult() {
+    html2canvas(resultCard).then(canvas=>{
+        const link = document.createElement("a");
+        link.download = `${nameInput.value}_${idInput.value}_offer.png`;
+        link.href = canvas.toDataURL();
         link.click();
+        downloadBtn.style.display="none"; // remove download button after saving
     });
 }
-
-// Close popup
-overlay.addEventListener("click",()=>{
-    popup.style.display="none";
-    overlay.style.display="none";
-});
 </script>
 
 </body>
