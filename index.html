@@ -5,224 +5,40 @@
 <title>FIRST WAVE FRIES - Valentine’s Dice Offer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- html2canvas for capturing popup -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
-    color: #fff;
-    text-align: center;
-    overflow-x: hidden;
-}
-
-h1 { margin: 10px 0; font-size: 2.2em; }
-h2 { margin: 5px 0; font-weight: normal; font-size: 1.2em; }
-
-.container {
-    width: 95%;
-    max-width: 1200px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card {
-    background: #fff;
-    color: #333;
-    border-radius: 16px;
-    padding: 20px;
-    margin: 15px 0;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 1em;
-}
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-}
-th {
-    background: #ff4d6d;
-    color: #fff;
-}
-
-.scene {
-    perspective: 900px;
-    height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.cube {
-    width: 120px;
-    height: 120px;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(-20deg) rotateY(20deg);
-}
-
-.face {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background: white;
-    border-radius: 12px;
-    border: 2px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    font-weight: bold;
-    color: #ff4d6d;
-}
-
-.face1 { transform: rotateX(0deg) translateZ(60px); }
-.face2 { transform: rotateX(180deg) translateZ(60px); }
-.face3 { transform: rotateY(90deg) translateZ(60px); }
-.face4 { transform: rotateY(-90deg) translateZ(60px); }
-.face5 { transform: rotateX(90deg) translateZ(60px); }
-.face6 { transform: rotateX(-90deg) translateZ(60px); }
-
-.roll {
-    animation: fastRoll 2s ease-in-out;
-}
-
-@keyframes fastRoll {
-    0%   { transform: translateY(0) rotateX(0) rotateY(0); }
-    20%  { transform: translateY(-80px) rotateX(360deg) rotateY(360deg); }
-    40%  { transform: translateY(0) rotateX(720deg) rotateY(720deg); }
-    60%  { transform: translateY(-50px) rotateX(1080deg) rotateY(1080deg); }
-    80%  { transform: translateY(0) rotateX(1440deg) rotateY(1440deg); }
-    100% { transform: translateY(0) rotateX(1800deg) rotateY(1800deg); }
-}
-
-input {
-    padding: 15px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin: 10px 5px;
-    width: 250px;
-    max-width: 90%;
-    box-sizing: border-box;
-}
-
-button {
-    background: #ff4d6d;
-    color: #fff;
-    border: none;
-    padding: 15px 40px;
-    font-size: 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-button:disabled {
-    background: #aaa;
-}
-
-.result {
-    margin-top: 15px;
-    font-size: 22px;
-    font-weight: bold;
-    word-wrap: break-word;
-}
-
-.note {
-    font-size: 16px;
-    color: #555;
-    margin-top: 10px;
-}
-
-/* Popup style */
-#popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    color: #333;
-    border-radius: 20px;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
-    z-index: 9999;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-}
-
-#popup img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin: 10px 0;
-}
-
-#popup button {
-    background: #28a745;
-    margin-top: 10px;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 999;
-}
-
-/* Responsive adjustments */
-@media (max-width: 700px) {
-    .cube {
-        width: 100px;
-        height: 100px;
-    }
-    .face {
-        width: 100px;
-        height: 100px;
-        font-size: 50px;
-    }
-    input {
-        width: 80%;
-        font-size: 16px;
-    }
-    button {
-        padding: 12px 30px;
-        font-size: 16px;
-    }
-    table th, table td {
-        font-size: 0.85em;
-        padding: 6px;
-    }
-}
+html, body {margin:0;padding:0;height:100%;font-family:Arial,sans-serif;}
+body {display:flex;flex-direction:column;justify-content:flex-start;align-items:center;background:linear-gradient(135deg,#ff4d6d,#ff9a9e);color:#fff;text-align:center;overflow-x:hidden;}
+h1 {margin:10px 0;font-size:2.2em;}
+h2 {margin:5px 0;font-weight:normal;font-size:1.2em;}
+.container {width:95%;max-width:1200px;flex:1;display:flex;flex-direction:column;align-items:center;}
+.card {background:#fff;color:#333;border-radius:16px;padding:20px;margin:15px 0;width:100%;box-sizing:border-box;}
+table {width:100%;border-collapse:collapse;margin-top:10px;font-size:1em;}
+th,td {border:1px solid #ddd;padding:10px;}
+th {background:#ff4d6d;color:#fff;}
+.scene {perspective:900px;height:250px;display:flex;justify-content:center;align-items:center;margin:20px 0;}
+.cube {width:120px;height:120px;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(20deg);}
+.face {position:absolute;width:120px;height:120px;background:white;border-radius:12px;border:2px solid #eee;display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:bold;color:#ff4d6d;}
+.face1 {transform:rotateX(0deg) translateZ(60px);}
+.face2 {transform:rotateX(180deg) translateZ(60px);}
+.face3 {transform:rotateY(90deg) translateZ(60px);}
+.face4 {transform:rotateY(-90deg) translateZ(60px);}
+.face5 {transform:rotateX(90deg) translateZ(60px);}
+.face6 {transform:rotateX(-90deg) translateZ(60px);}
+.roll {animation:fastRoll 2s ease-in-out;}
+@keyframes fastRoll {0%{transform:translateY(0) rotateX(0) rotateY(0);}20%{transform:translateY(-80px) rotateX(360deg) rotateY(360deg);}40%{transform:translateY(0) rotateX(720deg) rotateY(720deg);}60%{transform:translateY(-50px) rotateX(1080deg) rotateY(1080deg);}80%{transform:translateY(0) rotateX(1440deg) rotateY(1440deg);}100%{transform:translateY(0) rotateX(1800deg) rotateY(1800deg);}}
+input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;}
+button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
+button:disabled {background:#aaa;}
+.result {margin-top:15px;font-size:22px;font-weight:bold;word-wrap:break-word;}
+.note {font-size:16px;color:#555;margin-top:10px;}
+#popup {display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#333;border-radius:20px;padding:20px;width:90%;max-width:420px;z-index:9999;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.5);}
+#popup img {width:180px;height:180px;object-fit:cover;margin:15px 0;border-radius:12px;background:#f9f9f9;}
+.overlay {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:999;}
+@media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
 </style>
 </head>
-
 <body>
 
 <h1>❤️ Valentine’s Day Special ❤️</h1>
@@ -231,44 +47,41 @@ button:disabled {
 <div class="container">
 
 <div class="card">
-    <h3>🎁 Discount Chart</h3>
-    <div style="overflow-x:auto;">
-    <table>
-        <tr><th>Serial</th><th>Item</th><th>Discount</th></tr>
-        <tr><td>1</td><td>Burgers</td><td>10% OFF</td></tr>
-        <tr><td>2</td><td>Rolls</td><td>15% OFF</td></tr>
-        <tr><td>3</td><td>French Fries</td><td>20% OFF</td></tr>
-        <tr><td>4</td><td>Ice Creams</td><td>Buy 1 Get 1 Free</td></tr>
-        <tr><td>5</td><td>Milkshakes</td><td>25% OFF</td></tr>
-        <tr><td>6</td><td>Vada Pav / Chocolate Bun</td><td>₹30 OFF</td></tr>
-    </table>
-    </div>
+<h3>🎁 Discount Chart</h3>
+<div style="overflow-x:auto;">
+<table>
+<tr><th>Serial</th><th>Item</th><th>Discount</th></tr>
+<tr><td>1</td><td>Burgers</td><td>10% OFF</td></tr>
+<tr><td>2</td><td>Rolls</td><td>15% OFF</td></tr>
+<tr><td>3</td><td>French Fries</td><td>20% OFF</td></tr>
+<tr><td>4</td><td>Ice Creams</td><td>Buy 1 Get 1 Free</td></tr>
+<tr><td>5</td><td>Milkshakes</td><td>25% OFF</td></tr>
+<tr><td>6</td><td>Vada Pav / Chocolate Bun</td><td>₹30 OFF</td></tr>
+</table>
+</div>
 </div>
 
 <div class="card">
-    <h3>📝 Enter Your Details</h3>
-    <input type="text" id="studentName" placeholder="Your Name">
-    <input type="text" id="studentID" placeholder="Student ID"><br>
-    <button id="btn" onclick="rollDice()" disabled>SHAKE DICE 🎲</button>
+<h3>📝 Enter Your Details</h3>
+<input type="text" id="studentName" placeholder="Your Name">
+<input type="text" id="studentID" placeholder="Student ID"><br>
+<button id="btn" onclick="rollDice()" disabled>SHAKE DICE 🎲</button>
 </div>
 
 <div class="card">
-    <h3>🎲 Dice Roll</h3>
-    <div class="scene">
-        <div class="cube" id="cube">
-            <div class="face face1">1</div>
-            <div class="face face2">2</div>
-            <div class="face face3">3</div>
-            <div class="face face4">4</div>
-            <div class="face face5">5</div>
-            <div class="face face6">6</div>
-        </div>
-    </div>
-    <div class="result" id="result"></div>
-    <div class="note">
-        📸 Screenshot or download your lucky number card!<br>
-        🎓 Show Student ID + Screenshot before billing
-    </div>
+<h3>🎲 Dice Roll</h3>
+<div class="scene">
+<div class="cube" id="cube">
+<div class="face face1">1</div>
+<div class="face face2">2</div>
+<div class="face face3">3</div>
+<div class="face face4">4</div>
+<div class="face face5">5</div>
+<div class="face face6">6</div>
+</div>
+</div>
+<div class="result" id="result"></div>
+<div class="note">📸 Download your lucky card and show before billing</div>
 </div>
 
 </div>
@@ -276,107 +89,110 @@ button:disabled {
 <!-- Popup -->
 <div class="overlay" id="overlay"></div>
 <div id="popup">
-    <h2>🎉 Congratulations! 🎉</h2>
-    <p id="popupText"></p>
-    <img id="popupImg" src="" alt="Offer Image">
-    <br>
-    <button onclick="downloadPopup()">💾 Download</button>
+<h2>🎉 Congrats! 🎉</h2>
+<p id="popupText"></p>
+<img id="popupImg" src="https://i.imgur.com/1S2z9cR.png" alt="Congratulations">
+<br>
+<button onclick="downloadPopup()">💾 Download Card</button>
 </div>
 
 <script>
 // Dice rotations
 const diceRotations = {
-    1: "rotateX(0deg) rotateY(0deg)",
-    2: "rotateX(180deg) rotateY(0deg)",
-    3: "rotateX(0deg) rotateY(-90deg)",
-    4: "rotateX(0deg) rotateY(90deg)",
-    5: "rotateX(-90deg) rotateY(0deg)",
-    6: "rotateX(90deg) rotateY(0deg)"
+1: "rotateX(0deg) rotateY(0deg)",
+2: "rotateX(180deg) rotateY(0deg)",
+3: "rotateX(0deg) rotateY(-90deg)",
+4: "rotateX(0deg) rotateY(90deg)",
+5: "rotateX(-90deg) rotateY(0deg)",
+6: "rotateX(90deg) rotateY(0deg)"
 };
 
-// Discount offers
+// Offers
 const offers = {
-    1: {text: "10% OFF on Burgers 🍔", img:"https://i.imgur.com/U6Wk0z1.png"},
-    2: {text: "15% OFF on Rolls 🌯", img:"https://i.imgur.com/T8FZJ6S.png"},
-    3: {text: "20% OFF on French Fries 🍟", img:"https://i.imgur.com/kqHvj3g.png"},
-    4: {text: "Buy 1 Get 1 Free on Ice Creams 🍨", img:"https://i.imgur.com/Mp5RZ2Y.png"},
-    5: {text: "25% OFF on Milkshakes 🥤", img:"https://i.imgur.com/EcB2Jo2.png"},
-    6: {text: "₹30 OFF on Vada Pav / Chocolate Bun 🍫", img:"https://i.imgur.com/AG8C6vE.png"}
+1: "10% OFF on Burgers 🍔",
+2: "15% OFF on Rolls 🌯",
+3: "20% OFF on French Fries 🍟",
+4: "Buy 1 Get 1 Free on Ice Creams 🍨",
+5: "25% OFF on Milkshakes 🥤",
+6: "₹30 OFF on Vada Pav / Chocolate Bun 🍫"
 };
 
 const nameInput = document.getElementById("studentName");
 const idInput = document.getElementById("studentID");
 const shakeBtn = document.getElementById("btn");
 const result = document.getElementById("result");
-
 const popup = document.getElementById("popup");
 const overlay = document.getElementById("overlay");
 const popupText = document.getElementById("popupText");
 const popupImg = document.getElementById("popupImg");
 
-// Enable button only if both inputs filled
-[nameInput, idInput].forEach(input => {
-    input.addEventListener("input", () => {
-        shakeBtn.disabled = !(nameInput.value.trim() && idInput.value.trim());
-    });
-});
+// Enable button if both inputs filled
+[nameInput,idInput].forEach(input=>{input.addEventListener("input",()=>{shakeBtn.disabled=!(nameInput.value.trim()&&idInput.value.trim())})});
 
-// Track rolled students
-const rolledStudents = new Set();
+// Check localStorage to disable fields if student already rolled
+function checkStudent() {
+    const key = "rolled_" + nameInput.value.trim() + "_" + idInput.value.trim();
+    if(localStorage.getItem(key)) {
+        shakeBtn.disabled = true;
+        nameInput.disabled = true;
+        idInput.disabled = true;
+        result.innerHTML = "✅ You have already rolled the dice!";
+    }
+}
+nameInput.addEventListener("blur", checkStudent);
+idInput.addEventListener("blur", checkStudent);
 
 function rollDice() {
-    const studentKey = nameInput.value.trim() + "_" + idInput.value.trim();
-
-    if (rolledStudents.has(studentKey)) {
-        alert("You have already rolled the dice! ✅");
+    const studentKey = "rolled_" + nameInput.value.trim() + "_" + idInput.value.trim();
+    if(localStorage.getItem(studentKey)) {
+        alert("You already rolled! 🎲");
         shakeBtn.disabled = true;
         return;
     }
 
-    rolledStudents.add(studentKey);
+    localStorage.setItem(studentKey,"true");
     shakeBtn.disabled = true;
+    nameInput.disabled = true;
+    idInput.disabled = true;
 
     const cube = document.getElementById("cube");
     cube.classList.add("roll");
 
-    let interval = setInterval(() => {
-        let temp = Math.floor(Math.random() * 6) + 1;
-        cube.style.transform = diceRotations[temp];
-    }, 100);
+    let interval = setInterval(()=>{
+        let temp=Math.floor(Math.random()*6)+1;
+        cube.style.transform=diceRotations[temp];
+    },100);
 
-    setTimeout(() => {
+    setTimeout(()=>{
         clearInterval(interval);
         cube.classList.remove("roll");
 
-        const final = Math.floor(Math.random() * 6) + 1;
-        cube.style.transform = diceRotations[final];
+        const final=Math.floor(Math.random()*6)+1;
+        cube.style.transform=diceRotations[final];
 
-        result.innerHTML = `🎉 Congratulations, ${nameInput.value}! 😀<br>
-        You got Serial No. ${final} — ${offers[final].text}`;
+        result.innerHTML=`🎉 ${nameInput.value}, You got Serial No. ${final} — ${offers[final]}`;
 
         // Show popup
-        popupText.innerHTML = `${nameInput.value} (${idInput.value})<br>${offers[final].text}`;
-        popupImg.src = offers[final].img;
-        overlay.style.display = "block";
-        popup.style.display = "block";
-    }, 2500);
+        popupText.innerHTML=`${nameInput.value} (${idInput.value})<br>${offers[final]}`;
+        overlay.style.display="block";
+        popup.style.display="block";
+    },2500);
 }
 
-// Download popup as image
+// Download popup
 function downloadPopup() {
-    html2canvas(popup).then(canvas => {
-        const link = document.createElement("a");
-        const fileName = `${nameInput.value}_${idInput.value}.png`;
-        link.download = fileName;
-        link.href = canvas.toDataURL();
+    html2canvas(popup).then(canvas=>{
+        const link=document.createElement("a");
+        link.download=`${nameInput.value}_${idInput.value}.png`;
+        link.href=canvas.toDataURL();
         link.click();
     });
 }
 
-// Close popup on overlay click
-overlay.addEventListener("click", () => {
-    popup.style.display = "none";
-    overlay.style.display = "none";
+// Close popup
+overlay.addEventListener("click",()=>{
+    popup.style.display="none";
+    overlay.style.display="none";
 });
 </script>
 
