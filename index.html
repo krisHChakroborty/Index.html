@@ -59,8 +59,8 @@ button:disabled {background:#aaa;}
 
 <div class="card">
 <h3>📝 Enter Your Details</h3>
-<input type="text" id="studentName" placeholder="Your Name">
-<input type="text" id="studentID" placeholder="Student ID"><br>
+<input type="text" id="studentName" placeholder="Your Name (Letters only)">
+<input type="text" id="studentID" placeholder="Student ID (Numbers only)"><br>
 <button id="btn" onclick="rollDice()" disabled>SHAKE DICE 🎲</button>
 </div>
 
@@ -109,12 +109,17 @@ const shakeBtn = document.getElementById("btn");
 const resultCard = document.getElementById("resultCard");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// Enable button if both inputs filled
-[nameInput,idInput].forEach(input=>{
-    input.addEventListener("input",()=>{shakeBtn.disabled=!(nameInput.value.trim()&&idInput.value.trim())});
-});
+// Validate name (letters) and ID (numbers)
+function validateInputs() {
+    const nameVal = nameInput.value.trim();
+    const idVal = idInput.value.trim();
+    const nameValid = /^[A-Za-z\s]+$/.test(nameVal);
+    const idValid = /^[0-9]+$/.test(idVal);
+    shakeBtn.disabled = !(nameValid && idValid && nameVal && idVal);
+}
+[nameInput, idInput].forEach(input => input.addEventListener("input", validateInputs));
 
-// Check localStorage to disable fields if student already rolled
+// Check if student already rolled
 function checkStudent() {
     const key = "rolled_" + nameInput.value.trim() + "_" + idInput.value.trim();
     if(localStorage.getItem(key)) {
@@ -129,6 +134,7 @@ function checkStudent() {
 nameInput.addEventListener("blur", checkStudent);
 idInput.addEventListener("blur", checkStudent);
 
+// Roll dice
 function rollDice() {
     const studentKey = "rolled_" + nameInput.value.trim() + "_" + idInput.value.trim();
     if(localStorage.getItem(studentKey)) {
@@ -164,7 +170,7 @@ function rollDice() {
         🎲 Dice Result: ${final}<br>
         🏷 Offer: ${offers[final]}<br>
         🎊 Congratulations!<br>
-        📌 Click "Download Result" to save and then show this at the counter before billing.
+        📌 Click "Download Result" to save your offer.
         `;
 
         downloadBtn.style.display = "inline-block";
@@ -173,15 +179,14 @@ function rollDice() {
 
 // Download result as image
 function downloadResult() {
-    // Add counter message before saving
-    resultCard.innerHTML += `<br> <br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and save this and show at counter before billing.`;
+    resultCard.innerHTML += `<br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this at counter before billing.`;
 
     html2canvas(resultCard).then(canvas=>{
         const link = document.createElement("a");
         link.download = `${nameInput.value}_${idInput.value}_offer.png`;
         link.href = canvas.toDataURL();
         link.click();
-        downloadBtn.style.display="none"; // remove download button after saving
+        downloadBtn.style.display="none";
     });
 }
 </script>
