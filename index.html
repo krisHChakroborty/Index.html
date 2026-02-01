@@ -13,7 +13,7 @@ body {
   flex-direction:column;
   justify-content:flex-start;
   align-items:center;
-  background:linear-gradient(135deg,#ff4d6d,#ff9a9e);
+  background:linear-gradient(135deg,#ff4d6d,#ffef5d);
   color:#fff;
   text-align:center;
   overflow-x:hidden;
@@ -53,7 +53,7 @@ body::before {
 }
 
 h1 {margin:10px 0;font-size:2.2em;position:relative; z-index:1;}
-h2 {margin:5px 0;font-weight:normal;font-size:1.2em;position:relative; z-index:1;}
+h2 {margin:5px 0;font-weight:normal;font-size:1.5em;position:relative; z-index:1;}
 .container {width:95%;max-width:1200px;flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
 .card {background:#fff;color:#333;border-radius:16px;padding:20px;margin:15px 0;width:100%;box-sizing:border-box;position:relative;}
 table {width:100%;border-collapse:collapse;margin-top:10px;font-size:1em;}
@@ -71,6 +71,7 @@ th {background:#ff4d6d;color:#fff;}
 .roll {animation:fastRoll 2s ease-in-out;}
 @keyframes fastRoll {0%{transform:translateY(0) rotateX(0) rotateY(0);}20%{transform:translateY(-80px) rotateX(360deg) rotateY(360deg);}40%{transform:translateY(0) rotateX(720deg) rotateY(720deg);}60%{transform:translateY(-50px) rotateX(1080deg) rotateY(1080deg);}80%{transform:translateY(0) rotateX(1440deg) rotateY(1440deg);}100%{transform:translateY(0) rotateX(1800deg) rotateY(1800deg);}}
 
+
 input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;}
 button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
 button:disabled {background:#aaa;}
@@ -86,7 +87,6 @@ button:disabled {background:#aaa;}
 @keyframes spinHearts {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 
 @media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
-
 </style>
 </head>
 <body>
@@ -102,7 +102,7 @@ button:disabled {background:#aaa;}
   <span>🎲</span>
 </div>
 
-<br> <h1><b>FIRST WAVE FRIES</b></h1> <br>
+<br> <h2>FIRST WAVE FRIES <br> Dice Shake Game</h2>
 
 <div class="container">
 
@@ -179,30 +179,27 @@ function validateInputs() {
 }
 [nameInput, idInput].forEach(input => input.addEventListener("input", validateInputs));
 
-// Check for duplicate name or ID
-function checkDuplicate() {
-    const nameKey = "used_name_" + nameInput.value.trim().toLowerCase();
-    const idKey = "used_id_" + idInput.value.trim();
-    if(localStorage.getItem(nameKey) || localStorage.getItem(idKey)) {
+// Check if same Name AND ID combination exists
+function checkDuplicateCombo() {
+    const comboKey = "rolled_" + nameInput.value.trim().toLowerCase() + "_" + idInput.value.trim();
+    if(localStorage.getItem(comboKey)) {
         shakeBtn.disabled = true;
         resultCard.style.display = "block";
-        resultCard.innerHTML = "❌ Sorry! Name or ID already used.";
+        resultCard.innerHTML = "❌ Sorry! You have already rolled with this Name & ID combination.";
         return true;
     }
     resultCard.style.display = "none";
     shakeBtn.disabled = !(nameInput.value.trim() && idInput.value.trim());
     return false;
 }
-[nameInput, idInput].forEach(input => input.addEventListener("blur", checkDuplicate));
+[nameInput, idInput].forEach(input => input.addEventListener("blur", checkDuplicateCombo));
 
 // Roll dice
 function rollDice() {
-    if(checkDuplicate()) return;
+    if(checkDuplicateCombo()) return;
 
-    const nameKey = "used_name_" + nameInput.value.trim().toLowerCase();
-    const idKey = "used_id_" + idInput.value.trim();
-    localStorage.setItem(nameKey,"true");
-    localStorage.setItem(idKey,"true");
+    const comboKey = "rolled_" + nameInput.value.trim().toLowerCase() + "_" + idInput.value.trim();
+    localStorage.setItem(comboKey,"true");
 
     shakeBtn.disabled = true;
     nameInput.disabled = true;
@@ -239,7 +236,7 @@ function rollDice() {
 
 // Download result as image
 function downloadResult() {
-    resultCard.innerHTML += `<br> <br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this Download file and varify Name and Id at counter before billing.`;
+    resultCard.innerHTML += `<br> <br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this Download file and verify Name and Id at counter before billing.`;
 
     html2canvas(resultCard).then(canvas=>{
         const link = document.createElement("a");
