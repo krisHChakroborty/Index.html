@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>FIRST WAVE FRIES - Valentine’s Dice Offer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
@@ -79,7 +78,6 @@ button:disabled {background:#aaa;}
 </div>
 <div class="resultCard" id="resultCard" style="display:none;"></div>
 <button id="downloadBtn" style="display:none;margin-top:10px;" onclick="downloadResult()">💾 Download Result</button>
-<div class="note">📸 Show this at the counter before billing</div>
 </div>
 
 </div>
@@ -166,7 +164,7 @@ function rollDice() {
         🎲 Dice Result: ${final}<br>
         🏷 Offer: ${offers[final]}<br>
         🎊 Congratulations!<br>
-        📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this at counter before billing.
+        📌 Click "Download Result" to save and then show this at the counter before billing.
         `;
 
         downloadBtn.style.display = "inline-block";
@@ -175,6 +173,9 @@ function rollDice() {
 
 // Download result as image
 function downloadResult() {
+    // Add counter message before saving
+    resultCard.innerHTML += `<br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this at counter before billing.`;
+
     html2canvas(resultCard).then(canvas=>{
         const link = document.createElement("a");
         link.download = `${nameInput.value}_${idInput.value}_offer.png`;
