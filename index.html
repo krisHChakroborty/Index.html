@@ -31,7 +31,6 @@ input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;marg
 button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
 button:disabled {background:#aaa;}
 .resultCard {margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;background:#ffe6e6;color:#333;padding:15px;border-radius:12px;display:inline-block;line-height:1.4;}
-.note {font-size:16px;color:#555;margin-top:10px;}
 @media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
 </style>
 </head>
@@ -59,8 +58,10 @@ button:disabled {background:#aaa;}
 
 <div class="card">
 <h3>📝 Enter Your Details</h3>
-<input type="text" id="studentName" placeholder="Your Name (Letters only)">
-<input type="text" id="studentID" placeholder="Student ID (Numbers only)"><br>
+<input type="text" id="studentName" placeholder="Your Name (Letters only)" 
+       oninput="this.value = this.value.replace(/[^A-Za-z\s]/g,'')">
+<input type="text" id="studentID" placeholder="Student ID (Numbers only)" 
+       oninput="this.value = this.value.replace(/[^0-9]/g,'')"><br>
 <button id="btn" onclick="rollDice()" disabled>SHAKE DICE 🎲</button>
 </div>
 
@@ -109,13 +110,9 @@ const shakeBtn = document.getElementById("btn");
 const resultCard = document.getElementById("resultCard");
 const downloadBtn = document.getElementById("downloadBtn");
 
-// Validate name (letters) and ID (numbers)
+// Enable Shake button only if inputs are filled
 function validateInputs() {
-    const nameVal = nameInput.value.trim();
-    const idVal = idInput.value.trim();
-    const nameValid = /^[A-Za-z\s]+$/.test(nameVal);
-    const idValid = /^[0-9]+$/.test(idVal);
-    shakeBtn.disabled = !(nameValid && idValid && nameVal && idVal);
+    shakeBtn.disabled = !(nameInput.value.trim() && idInput.value.trim());
 }
 [nameInput, idInput].forEach(input => input.addEventListener("input", validateInputs));
 
