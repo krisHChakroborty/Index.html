@@ -16,13 +16,41 @@ body{
 
 /* HEADER */
 .header{
+  position:relative;
   background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
   color:#fff;
-  padding:22px;
+  padding:26px 20px;
   text-align:center;
   font-weight:600;
   border-bottom-left-radius:26px;
   border-bottom-right-radius:26px;
+  overflow:hidden;
+}
+
+.header h1{
+  margin:0;
+  font-size:20px;
+}
+
+.header small{
+  font-size:12px;
+  opacity:.9;
+}
+
+/* HEADER DICE */
+.header-dice{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:34px;
+  animation:floatDice 2.5s ease-in-out infinite alternate;
+}
+
+.header-dice.left{left:16px}
+.header-dice.right{right:16px; animation-delay:1s}
+
+@keyframes floatDice{
+  to{transform:translateY(-60%) rotate(10deg)}
 }
 
 /* APP */
@@ -130,7 +158,9 @@ button:disabled{background:#ccc}
 <body>
 
 <div class="header">
-  ❤️ Valentine Dice Coupons<br>
+  <div class="header-dice left">🎲</div>
+  <div class="header-dice right">🎲</div>
+  <h1>❤️ Valentine Dice Coupons</h1>
   <small>FIRST WAVE FRIES</small>
 </div>
 
@@ -142,7 +172,7 @@ button:disabled{background:#ccc}
   <div class="coupon"><span>🎲 2</span><span>Coke (250ml)</span></div>
   <div class="coupon"><span>🎲 3</span><span>5% OFF</span></div>
   <div class="coupon"><span>🎲 4</span><span>Sprite (250ml)</span></div>
-  <div class="coupon"><span>🎲 5</span><span> Rs.20 OFF</span></div>
+  <div class="coupon"><span>🎲 5</span><span>Rs.20 OFF</span></div>
   <div class="coupon"><span>🎲 6</span><span>Water Bottle</span></div>
 </div>
 
@@ -166,7 +196,8 @@ button:disabled{background:#ccc}
 
   <div class="result" id="result"></div>
   <button id="download" style="display:none" onclick="downloadResult()">⬇️ Download Coupon</button>
-  <div class="small">Show coupon at counter before billing</div>
+  <div class="small">Enter your name and ID, then click Shake.
+Once the result appears, download the coupon and show the downloaded coupon at the billing counter.</div>
 </div>
 
 </div>
@@ -181,7 +212,6 @@ const offers={
   6:"Water Bottle"
 };
 
-/* FIXED ROTATIONS */
 const rotations={
   1:"rotateX(0deg) rotateY(0deg)",
   2:"rotateY(180deg)",
