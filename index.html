@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>First Wave Fries – Valentine Coupons</title>
+<title>First Wave Fries – Valentine Dice Offer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
@@ -13,27 +12,21 @@ body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
   background:#f6f7fb;
-  color:#222;
 }
 
 /* HEADER */
 .header{
   background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
   color:#fff;
-  padding:22px 16px;
+  padding:22px;
   text-align:center;
   font-weight:600;
   border-bottom-left-radius:26px;
   border-bottom-right-radius:26px;
-  box-shadow:0 10px 30px rgba(255,77,109,.35);
 }
 
 /* APP */
-.app{
-  max-width:420px;
-  margin:auto;
-  padding:16px;
-}
+.app{max-width:420px;margin:auto;padding:16px}
 
 /* CARD */
 .card{
@@ -41,51 +34,21 @@ body{
   border-radius:20px;
   padding:16px;
   margin-bottom:16px;
-  box-shadow:
-    0 12px 25px rgba(0,0,0,.08),
-    inset 0 1px 0 rgba(255,255,255,.7);
+  box-shadow:0 12px 25px rgba(0,0,0,.08);
 }
 
-/* COUPONS */
+/* COUPON */
 .coupon{
-  position:relative;
-  background:linear-gradient(135deg,#fff,#fff5f7);
-  border-radius:18px;
-  padding:14px 16px;
-  margin-bottom:14px;
+  background:#fff5f7;
+  border-radius:16px;
+  padding:12px 14px;
+  margin:10px 0;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  box-shadow:
-    0 12px 20px rgba(255,77,109,.25),
-    inset 0 0 0 2px #ffd1da;
-  animation:floatCoupon 3s ease-in-out infinite alternate;
+  box-shadow:0 10px 20px rgba(255,77,109,.25);
+  animation:float 3s ease-in-out infinite alternate;
 }
-
-.coupon::before,
-.coupon::after{
-  content:"";
-  position:absolute;
-  width:18px;height:18px;
-  background:#f6f7fb;
-  border-radius:50%;
-  top:50%;
-  transform:translateY(-50%);
-}
-.coupon::before{left:-9px}
-.coupon::after{right:-9px}
-
-@keyframes floatCoupon{
-  from{transform:translateY(0)}
-  to{transform:translateY(-6px)}
-}
-
-.coupon span{
-  font-weight:600;
-}
-.coupon .dice{
-  font-size:20px;
-}
+@keyframes float{to{transform:translateY(-6px)}}
 
 /* INPUT */
 input{
@@ -108,16 +71,12 @@ button{
   color:#fff;
   font-weight:600;
   cursor:pointer;
-  box-shadow:0 10px 20px rgba(255,77,109,.4);
 }
-button:disabled{
-  background:#ccc;
-  box-shadow:none;
-}
+button:disabled{background:#ccc}
 
 /* DICE */
 .scene{
-  perspective:900px;
+  perspective:1000px;
   height:200px;
   display:flex;
   justify-content:center;
@@ -127,6 +86,7 @@ button:disabled{
   width:110px;height:110px;
   position:relative;
   transform-style:preserve-3d;
+  transition:transform 1s ease-out;
 }
 .face{
   position:absolute;
@@ -141,17 +101,18 @@ button:disabled{
   color:#ff4d6d;
   box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
+
 .face1{transform:translateZ(55px)}
 .face2{transform:rotateY(180deg) translateZ(55px)}
 .face3{transform:rotateY(90deg) translateZ(55px)}
 .face4{transform:rotateY(-90deg) translateZ(55px)}
 .face5{transform:rotateX(90deg) translateZ(55px)}
-.face6{transform:rotateX(-50deg) translateZ(55px)}
+.face6{transform:rotateX(-90deg) translateZ(55px)}
 
-.roll{animation:spin 2.2s ease-in-out}
+.roll{animation:spin 1.5s linear}
 @keyframes spin{
   from{transform:rotateX(0) rotateY(0)}
-  to{transform:rotateX(1080deg) rotateY(1080deg)}
+  to{transform:rotateX(720deg) rotateY(720deg)}
 }
 
 /* RESULT */
@@ -160,48 +121,37 @@ button:disabled{
   border-radius:16px;
   padding:14px;
   margin-top:14px;
-  font-size:16px;
   display:none;
-  box-shadow:0 8px 18px rgba(255,77,109,.25);
 }
-
-.small{
-  font-size:12px;
-  color:#666;
-  margin-top:6px;
-}
+.small{font-size:12px;color:#666;margin-top:6px}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-  ❤️ Valentine Coupons<br>
+  ❤️ Valentine Dice Coupons<br>
   <small>FIRST WAVE FRIES</small>
 </div>
 
 <div class="app">
 
-<!-- COUPONS -->
 <div class="card">
-  <strong>💝 Valentine Dice Coupons</strong> <br><br>
-
+  <strong>💝 Dice Offers</strong>
   <div class="coupon"><span>🎲 1</span><span>10% OFF</span></div>
   <div class="coupon"><span>🎲 2</span><span>One Coke</span></div>
   <div class="coupon"><span>🎲 3</span><span>5% OFF</span></div>
   <div class="coupon"><span>🎲 4</span><span>One Sprite</span></div>
-  <div class="coupon"><span>🎲 5</span><span>20 rupees OFF</span></div>
+  <div class="coupon"><span>🎲 5</span><span>Better Luck Next Time</span></div>
   <div class="coupon"><span>🎲 6</span><span>One Water Bottle</span></div>
 </div>
 
-<!-- INPUT -->
 <div class="card">
   <input id="name" placeholder="Your Name">
   <input id="sid" placeholder="Student ID">
   <button id="playBtn" disabled onclick="rollDice()">💖 SHAKE DICE</button>
 </div>
 
-<!-- GAME -->
 <div class="card">
   <div class="scene">
     <div class="cube" id="cube">
@@ -216,7 +166,7 @@ button:disabled{
 
   <div class="result" id="result"></div>
   <button id="download" style="display:none" onclick="downloadResult()">⬇️ Download Coupon</button>
-  <div class="small">Show downloaded coupon at counter before billing</div>
+  <div class="small">Show coupon at counter before billing</div>
 </div>
 
 </div>
@@ -227,8 +177,18 @@ const offers={
   2:"One Coke",
   3:"5% OFF",
   4:"One Sprite",
-  5:"20 rupees OFF",
+  5:"Better Luck Next Time",
   6:"One Water Bottle"
+};
+
+/* FIXED ROTATIONS */
+const rotations={
+  1:"rotateX(0deg) rotateY(0deg)",
+  2:"rotateY(180deg)",
+  3:"rotateY(-90deg)",
+  4:"rotateY(90deg)",
+  5:"rotateX(-90deg)",
+  6:"rotateX(90deg)"
 };
 
 const nameInput=document.getElementById("name");
@@ -251,13 +211,13 @@ function rollDice(){
   }
   localStorage.setItem(key,true);
 
-  cube.classList.add("roll");
   btn.disabled=true;
+  cube.classList.add("roll");
 
   setTimeout(()=>{
     cube.classList.remove("roll");
     const n=Math.floor(Math.random()*6)+1;
-    cube.style.transform=`rotateX(${n*90}deg) rotateY(${n*90}deg)`;
+    cube.style.transform=rotations[n];
 
     result.style.display="block";
     result.innerHTML=`
@@ -267,7 +227,7 @@ function rollDice(){
       🎁 <b>${offers[n]}</b>
     `;
     download.style.display="block";
-  },2200);
+  },1500);
 }
 
 function downloadResult(){
