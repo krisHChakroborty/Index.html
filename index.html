@@ -2,249 +2,282 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FIRST WAVE FRIES - Valentine’s Dice Offer</title>
+<title>First Wave Fries – Valentine Coupons</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
-html, body {margin:0;padding:0;height:100%;font-family:Arial,sans-serif;}
-body {
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-  background:linear-gradient(135deg,#ff4d6d,#ffef5d);
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#f6f7fb;
+  color:#222;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
   color:#fff;
+  padding:22px 16px;
   text-align:center;
-  overflow-x:hidden;
+  font-weight:600;
+  border-bottom-left-radius:26px;
+  border-bottom-right-radius:26px;
+  box-shadow:0 10px 30px rgba(255,77,109,.35);
+}
+
+/* APP */
+.app{
+  max-width:420px;
+  margin:auto;
+  padding:16px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:
+    0 12px 25px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+/* COUPONS */
+.coupon{
   position:relative;
+  background:linear-gradient(135deg,#fff,#fff5f7);
+  border-radius:18px;
+  padding:14px 16px;
+  margin-bottom:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:
+    0 12px 20px rgba(255,77,109,.25),
+    inset 0 0 0 2px #ffd1da;
+  animation:floatCoupon 3s ease-in-out infinite alternate;
 }
 
-/* Valentine Decorations - floating hearts */
-body::before {
-  content:"❤️💌💕🌹💖💘💝";
+.coupon::before,
+.coupon::after{
+  content:"";
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  font-size:30px;
-  text-align:center;
-  animation:scrollHearts 10s linear infinite;
-  pointer-events:none;
-  user-select:none;
+  width:18px;height:18px;
+  background:#f6f7fb;
+  border-radius:50%;
+  top:50%;
+  transform:translateY(-50%);
 }
-@keyframes scrollHearts {
-  0% {transform:translateY(-50px);}
-  100% {transform:translateY(100vh);}
+.coupon::before{left:-9px}
+.coupon::after{right:-9px}
+
+@keyframes floatCoupon{
+  from{transform:translateY(0)}
+  to{transform:translateY(-6px)}
 }
 
-/* Floating dice below heading */
-.header-dice {
-  margin-top:10px;
+.coupon span{
+  font-weight:600;
+}
+.coupon .dice{
+  font-size:20px;
+}
+
+/* INPUT */
+input{
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  margin-bottom:12px;
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:15px;
+  font-size:17px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ff4d6d,#ff758f);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 10px 20px rgba(255,77,109,.4);
+}
+button:disabled{
+  background:#ccc;
+  box-shadow:none;
+}
+
+/* DICE */
+.scene{
+  perspective:900px;
+  height:200px;
   display:flex;
   justify-content:center;
-  gap:15px;
-  font-size:35px;
-  animation:floatDice 3s ease-in-out infinite alternate;
+  align-items:center;
 }
-@keyframes floatDice {
-  0% {transform:translateY(0);}
-  100% {transform:translateY(15px);}
+.cube{
+  width:110px;height:110px;
+  position:relative;
+  transform-style:preserve-3d;
 }
-
-h1 {margin:10px 0;font-size:2.2em;position:relative; z-index:1;}
-h2 {margin:5px 0;font-weight:normal;font-size:1.5em;position:relative; z-index:1;}
-.container {width:95%;max-width:1200px;flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
-.card {background:#fff;color:#333;border-radius:16px;padding:20px;margin:15px 0;width:100%;box-sizing:border-box;position:relative;}
-table {width:100%;border-collapse:collapse;margin-top:10px;font-size:1em;}
-th,td {border:1px solid #ddd;padding:10px;}
-th {background:#ff4d6d;color:#fff;}
-.scene {perspective:900px;height:250px;display:flex;justify-content:center;align-items:center;margin:20px 0;}
-.cube {width:120px;height:120px;position:relative;transform-style:preserve-3d;transform:rotateX(-20deg) rotateY(20deg);}
-.face {position:absolute;width:120px;height:120px;background:white;border-radius:12px;border:2px solid #eee;display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:bold;color:#ff4d6d;}
-.face1 {transform:rotateX(0deg) translateZ(60px);}
-.face2 {transform:rotateX(180deg) translateZ(60px);}
-.face3 {transform:rotateY(90deg) translateZ(60px);}
-.face4 {transform:rotateY(-90deg) translateZ(60px);}
-.face5 {transform:rotateX(90deg) translateZ(60px);}
-.face6 {transform:rotateX(-90deg) translateZ(60px);}
-.roll {animation:fastRoll 2s ease-in-out;}
-@keyframes fastRoll {0%{transform:translateY(0) rotateX(0) rotateY(0);}20%{transform:translateY(-80px) rotateX(360deg) rotateY(360deg);}40%{transform:translateY(0) rotateX(720deg) rotateY(720deg);}60%{transform:translateY(-50px) rotateX(1080deg) rotateY(1080deg);}80%{transform:translateY(0) rotateX(1440deg) rotateY(1440deg);}100%{transform:translateY(0) rotateX(1800deg) rotateY(1800deg);}}
-
-
-input {padding:15px;font-size:18px;border-radius:10px;border:1px solid #ccc;margin:10px 5px;width:250px;max-width:90%;box-sizing:border-box;}
-button {background:#ff4d6d;color:#fff;border:none;padding:15px 40px;font-size:18px;border-radius:10px;cursor:pointer;margin-top:10px;}
-button:disabled {background:#aaa;}
-.resultCard {margin-top:15px;font-size:20px;font-weight:bold;word-wrap:break-word;background:#ffe6e6;color:#333;padding:15px;border-radius:12px;display:inline-block;line-height:1.4;position:relative;}
-.resultCard::before {
-  content:"💖💘💝";
+.face{
   position:absolute;
-  top:-20px;
-  right:-20px;
-  font-size:20px;
-  animation:spinHearts 2s linear infinite;
+  width:110px;height:110px;
+  background:#fff;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  font-weight:bold;
+  color:#ff4d6d;
+  box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
-@keyframes spinHearts {0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.face1{transform:translateZ(55px)}
+.face2{transform:rotateY(180deg) translateZ(55px)}
+.face3{transform:rotateY(90deg) translateZ(55px)}
+.face4{transform:rotateY(-90deg) translateZ(55px)}
+.face5{transform:rotateX(90deg) translateZ(55px)}
+.face6{transform:rotateX(-90deg) translateZ(55px)}
 
-@media(max-width:700px){.cube{width:100px;height:100px;}.face{width:100px;height:100px;font-size:50px;}input{width:80%;font-size:16px;}button{padding:12px 30px;font-size:16px;}table th,table td{font-size:0.85em;padding:6px;}}
+.roll{animation:spin 2.2s ease-in-out}
+@keyframes spin{
+  from{transform:rotateX(0) rotateY(0)}
+  to{transform:rotateX(1080deg) rotateY(1080deg)}
+}
+
+/* RESULT */
+.result{
+  background:#fff0f4;
+  border-radius:16px;
+  padding:14px;
+  margin-top:14px;
+  font-size:16px;
+  display:none;
+  box-shadow:0 8px 18px rgba(255,77,109,.25);
+}
+
+.small{
+  font-size:12px;
+  color:#666;
+  margin-top:6px;
+}
 </style>
 </head>
+
 <body>
 
-<h1>❤️ STUDENTS - Valentine’s Month Special ❤️</h1>
-
-<!-- Floating Dice below Heading -->
-<div class="header-dice">
-  <span>🎲</span>
-  <span>🎲</span>
-  <span>🎲</span>
-  <span>🎲</span>
-  <span>🎲</span>
+<div class="header">
+  ❤️ Valentine Coupons<br>
+  <small>FIRST WAVE FRIES</small>
 </div>
 
-<br> <h2>FIRST WAVE FRIES <br> Dice Shake Game</h2>
+<div class="app">
 
-<div class="container">
-
+<!-- COUPONS -->
 <div class="card">
-<h3>🎁 Discount Chart</h3>
-<div style="overflow-x:auto;">
-<table>
-<tr><th>Dice number</th><th>Item</th><th>Discount</th></tr>
-<tr><td>1</td><td>Burgers</td><td>10% OFF</td></tr>
-<tr><td>2</td><td>Rolls</td><td>15% OFF</td></tr>
-<tr><td>3</td><td>2 French Fries Large</td><td>₹40 OFF</td></tr>
-<tr><td>4</td><td>Ice Creams-Little bites</td><td>Buy 1 Get 1 Free</td></tr>
-<tr><td>5</td><td>Milkshakes</td><td>15% OFF</td></tr>
-<tr><td>6</td><td>Vada Pav <b>Or</b>  Chocolate Bun</td><td>₹30 OFF</td></tr>
-</table>
-</div>
+  <strong>💝 Valentine Dice Coupons</strong> <br><br>
+
+  <div class="coupon"><span>🎲 1</span><span>10% OFF</span></div>
+  <div class="coupon"><span>🎲 2</span><span>One Coke</span></div>
+  <div class="coupon"><span>🎲 3</span><span>5% OFF</span></div>
+  <div class="coupon"><span>🎲 4</span><span>One Sprite</span></div>
+  <div class="coupon"><span>🎲 5</span><span>20 rupees OFF</span></div>
+  <div class="coupon"><span>🎲 6</span><span>One Water Bottle</span></div>
 </div>
 
+<!-- INPUT -->
 <div class="card">
-<h3>📝 Enter Your Details</h3>
-<input type="text" id="studentName" placeholder="Your Name">
-<input type="text" id="studentID" placeholder="Student ID"><br>
-<button id="btn" onclick="rollDice()" disabled>SHAKE DICE 🎲</button>
+  <input id="name" placeholder="Your Name">
+  <input id="sid" placeholder="Student ID">
+  <button id="playBtn" disabled onclick="rollDice()">💖 SHAKE DICE</button>
 </div>
 
+<!-- GAME -->
 <div class="card">
-<h3>🎲 Dice Roll</h3>
-<div class="scene">
-<div class="cube" id="cube">
-<div class="face face1">1</div>
-<div class="face face2">2</div>
-<div class="face face3">3</div>
-<div class="face face4">4</div>
-<div class="face face5">5</div>
-<div class="face face6">6</div>
-</div>
-</div>
-<div class="resultCard" id="resultCard" style="display:none;"></div>
-<button id="downloadBtn" style="display:none;margin-top:10px;" onclick="downloadResult()">💾 Download Result</button>
+  <div class="scene">
+    <div class="cube" id="cube">
+      <div class="face face1">1</div>
+      <div class="face face2">2</div>
+      <div class="face face3">3</div>
+      <div class="face face4">4</div>
+      <div class="face face5">5</div>
+      <div class="face face6">6</div>
+    </div>
+  </div>
+
+  <div class="result" id="result"></div>
+  <button id="download" style="display:none" onclick="downloadResult()">⬇️ Download Coupon</button>
+  <div class="small">Show downloaded coupon at counter before billing</div>
 </div>
 
 </div>
 
 <script>
-// Dice rotations
-const diceRotations = {
-1: "rotateX(0deg) rotateY(0deg)",
-2: "rotateX(180deg) rotateY(0deg)",
-3: "rotateX(0deg) rotateY(-90deg)",
-4: "rotateX(0deg) rotateY(90deg)",
-5: "rotateX(-90deg) rotateY(0deg)",
-6: "rotateX(90deg) rotateY(0deg)"
+const offers={
+  1:"10% OFF",
+  2:"One Coke",
+  3:"5% OFF",
+  4:"One Sprite",
+  5:"20 rupees OFF",
+  6:"One Water Bottle"
 };
 
-// Offers
-const offers = {
-1: "10% OFF on Burgers 🍔",
-2: "15% OFF on Rolls 🌯",
-3: "₹40 OFF on 2 French Fries Large 🍟",
-4: "Buy 1 Get 1 Free on Ice Creams - Little bites 🍨",
-5: "15% OFF on Milkshakes 🥤",
-6: "₹30 OFF on Vada Pav <b> or <b> Chocolate Bun 🍫"
-};
+const nameInput=document.getElementById("name");
+const idInput=document.getElementById("sid");
+const btn=document.getElementById("playBtn");
+const cube=document.getElementById("cube");
+const result=document.getElementById("result");
+const download=document.getElementById("download");
 
-const nameInput = document.getElementById("studentName");
-const idInput = document.getElementById("studentID");
-const shakeBtn = document.getElementById("btn");
-const resultCard = document.getElementById("resultCard");
-const downloadBtn = document.getElementById("downloadBtn");
+[nameInput,idInput].forEach(i=>i.addEventListener("input",()=>{
+  btn.disabled=!(nameInput.value && idInput.value);
+}));
 
-// Enable Shake button only if inputs are filled
-function validateInputs() {
-    shakeBtn.disabled = !(nameInput.value.trim() && idInput.value.trim());
-}
-[nameInput, idInput].forEach(input => input.addEventListener("input", validateInputs));
+function rollDice(){
+  const key="fwf_"+nameInput.value+"_"+idInput.value;
+  if(localStorage.getItem(key)){
+    result.style.display="block";
+    result.innerHTML="❌ Already played with this Name & ID";
+    return;
+  }
+  localStorage.setItem(key,true);
 
-// Check if same Name AND ID combination exists
-function checkDuplicateCombo() {
-    const comboKey = "rolled_" + nameInput.value.trim().toLowerCase() + "_" + idInput.value.trim();
-    if(localStorage.getItem(comboKey)) {
-        shakeBtn.disabled = true;
-        resultCard.style.display = "block";
-        resultCard.innerHTML = "❌ Sorry! You have already rolled with this Name & ID combination.";
-        return true;
-    }
-    resultCard.style.display = "none";
-    shakeBtn.disabled = !(nameInput.value.trim() && idInput.value.trim());
-    return false;
-}
-[nameInput, idInput].forEach(input => input.addEventListener("blur", checkDuplicateCombo));
+  cube.classList.add("roll");
+  btn.disabled=true;
 
-// Roll dice
-function rollDice() {
-    if(checkDuplicateCombo()) return;
+  setTimeout(()=>{
+    cube.classList.remove("roll");
+    const n=Math.floor(Math.random()*6)+1;
+    cube.style.transform=`rotateX(${n*90}deg) rotateY(${n*90}deg)`;
 
-    const comboKey = "rolled_" + nameInput.value.trim().toLowerCase() + "_" + idInput.value.trim();
-    localStorage.setItem(comboKey,"true");
-
-    shakeBtn.disabled = true;
-    nameInput.disabled = true;
-    idInput.disabled = true;
-
-    const cube = document.getElementById("cube");
-    cube.classList.add("roll");
-
-    let interval = setInterval(()=>{
-        let temp=Math.floor(Math.random()*6)+1;
-        cube.style.transform=diceRotations[temp];
-    },100);
-
-    setTimeout(()=>{
-        clearInterval(interval);
-        cube.classList.remove("roll");
-
-        const final=Math.floor(Math.random()*6)+1;
-        cube.style.transform=diceRotations[final];
-
-        resultCard.style.display = "block";
-        resultCard.innerHTML = `
-        🎉 Name: ${nameInput.value}<br>
-        🎉 ID: ${idInput.value}<br>
-        🎲 Dice Result: ${final}<br>
-        🏷 Offer: ${offers[final]}<br>
-        🎊 Congratulations!<br>
-        📌 Click "Download Result" to save your offer.
-        `;
-
-        downloadBtn.style.display = "inline-block";
-    },2500);
+    result.style.display="block";
+    result.innerHTML=`
+      💘 <b>${nameInput.value}</b><br>
+      🎓 ID: ${idInput.value}<br>
+      🎲 Dice: ${n}<br>
+      🎁 <b>${offers[n]}</b>
+    `;
+    download.style.display="block";
+  },2200);
 }
 
-// Download result as image
-function downloadResult() {
-    resultCard.innerHTML += `<br> <br>📍 Please visit FIRST WAVE FRIES, M.N COMPLEX, JNANABHARATHI MAIN ROAD, NAGARBHAVI CIRCLE and show this Download file and verify Name and Id at counter before billing.`;
-
-    html2canvas(resultCard).then(canvas=>{
-        const link = document.createElement("a");
-        link.download = `${nameInput.value}_${idInput.value}_offer.png`;
-        link.href = canvas.toDataURL();
-        link.click();
-        downloadBtn.style.display="none";
-    });
+function downloadResult(){
+  html2canvas(result).then(c=>{
+    const a=document.createElement("a");
+    a.download="FirstWaveFries_Valentine_Coupon.png";
+    a.href=c.toDataURL();
+    a.click();
+    download.style.display="none";
+  });
 }
 </script>
 
