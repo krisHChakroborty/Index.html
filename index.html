@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <title>First Wave Fries – Valentine Dice Offer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- html2canvas -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
@@ -26,16 +28,8 @@ body{
   border-bottom-right-radius:26px;
   overflow:hidden;
 }
-
-.header h1{
-  margin:0;
-  font-size:20px;
-}
-
-.header small{
-  font-size:12px;
-  opacity:.9;
-}
+.header h1{margin:0;font-size:20px}
+.header small{font-size:12px;opacity:.9}
 
 /* HEADER DICE */
 .header-dice{
@@ -45,9 +39,8 @@ body{
   font-size:34px;
   animation:floatDice 2.5s ease-in-out infinite alternate;
 }
-
 .header-dice.left{left:16px}
-.header-dice.right{right:16px; animation-delay:1s}
+.header-dice.right{right:16px;animation-delay:1s}
 
 @keyframes floatDice{
   to{transform:translateY(-60%) rotate(10deg)}
@@ -111,14 +104,16 @@ button:disabled{background:#ccc}
   align-items:center;
 }
 .cube{
-  width:110px;height:110px;
+  width:110px;
+  height:110px;
   position:relative;
   transform-style:preserve-3d;
   transition:transform 1s ease-out;
 }
 .face{
   position:absolute;
-  width:110px;height:110px;
+  width:110px;
+  height:110px;
   background:#fff;
   border-radius:20px;
   display:flex;
@@ -129,7 +124,6 @@ button:disabled{background:#ccc}
   color:#ff4d6d;
   box-shadow:0 10px 20px rgba(0,0,0,.15);
 }
-
 .face1{transform:translateZ(55px)}
 .face2{transform:rotateY(180deg) translateZ(55px)}
 .face3{transform:rotateY(90deg) translateZ(55px)}
@@ -166,39 +160,44 @@ button:disabled{background:#ccc}
 
 <div class="app">
 
-<div class="card">
-  <strong>💝 Dice Offers</strong>
-  <div class="coupon"><span>🎲 1</span><span>10% OFF</span></div>
-  <div class="coupon"><span>🎲 2</span><span>Coke (250ml)</span></div>
-  <div class="coupon"><span>🎲 3</span><span>5% OFF</span></div>
-  <div class="coupon"><span>🎲 4</span><span>Sprite (250ml)</span></div>
-  <div class="coupon"><span>🎲 5</span><span>Rs.20 OFF</span></div>
-  <div class="coupon"><span>🎲 6</span><span>Water Bottle</span></div>
-</div>
-
-<div class="card">
-  <input id="name" placeholder="Your Name">
-  <input id="sid" placeholder="Student ID">
-  <button id="playBtn" disabled onclick="rollDice()">💖 SHAKE DICE</button>
-</div>
-
-<div class="card">
-  <div class="scene">
-    <div class="cube" id="cube">
-      <div class="face face1">1</div>
-      <div class="face face2">2</div>
-      <div class="face face3">3</div>
-      <div class="face face4">4</div>
-      <div class="face face5">5</div>
-      <div class="face face6">6</div>
-    </div>
+  <!-- OFFERS -->
+  <div class="card">
+    <strong>💝 Dice Offers</strong>
+    <div class="coupon"><span>🎲 1</span><span>10% OFF</span></div>
+    <div class="coupon"><span>🎲 2</span><span>Coke (250ml)</span></div>
+    <div class="coupon"><span>🎲 3</span><span>5% OFF</span></div>
+    <div class="coupon"><span>🎲 4</span><span>Sprite (250ml)</span></div>
+    <div class="coupon"><span>🎲 5</span><span>Rs.20 OFF</span></div>
+    <div class="coupon"><span>🎲 6</span><span>Water Bottle</span></div>
   </div>
 
-  <div class="result" id="result"></div>
-  <button id="download" style="display:none" onclick="downloadResult()">⬇️ Download Coupon</button>
-  <div class="small">Enter your name and ID, then click Shake.
-Once the result appears, download the coupon and show the downloaded coupon at the billing counter.</div>
-</div>
+  <!-- INPUT -->
+  <div class="card">
+    <p style="font-size:13px;color:#555;margin-bottom:12px;">
+      👉 Enter your name and ID, tap <b>Shake Dice</b>, download the coupon, and show it at the billing counter.
+    </p>
+    <input id="name" placeholder="Your Name">
+    <input id="sid" placeholder="Student ID">
+    <button id="playBtn" disabled onclick="rollDice()">💖 SHAKE DICE</button>
+  </div>
+
+  <!-- DICE -->
+  <div class="card">
+    <div class="scene">
+      <div class="cube" id="cube">
+        <div class="face face1">1</div>
+        <div class="face face2">2</div>
+        <div class="face face3">3</div>
+        <div class="face face4">4</div>
+        <div class="face face5">5</div>
+        <div class="face face6">6</div>
+      </div>
+    </div>
+
+    <div class="result" id="result"></div>
+    <button id="download" style="display:none" onclick="downloadResult()">⬇️ Download Coupon</button>
+    <div class="small">Show coupon at counter before billing</div>
+  </div>
 
 </div>
 
@@ -228,9 +227,11 @@ const cube=document.getElementById("cube");
 const result=document.getElementById("result");
 const download=document.getElementById("download");
 
-[nameInput,idInput].forEach(i=>i.addEventListener("input",()=>{
-  btn.disabled=!(nameInput.value && idInput.value);
-}));
+[nameInput,idInput].forEach(i=>{
+  i.addEventListener("input",()=>{
+    btn.disabled=!(nameInput.value && idInput.value);
+  });
+});
 
 function rollDice(){
   const key="fwf_"+nameInput.value+"_"+idInput.value;
@@ -250,21 +251,21 @@ function rollDice(){
     cube.style.transform=rotations[n];
 
     result.style.display="block";
-    result.innerHTML=`
-      💘 <b>${nameInput.value}</b><br>
-      🎓 ID: ${idInput.value}<br>
-      🎲 Dice: ${n}<br>
-      🎁 <b>${offers[n]}</b>
-    `;
+    result.innerHTML=
+      "💘 <b>"+nameInput.value+"</b><br>"+
+      "🎓 ID: "+idInput.value+"<br>"+
+      "🎲 Dice: "+n+"<br>"+
+      "🎁 <b>"+offers[n]+"</b>";
+
     download.style.display="block";
   },1500);
 }
 
 function downloadResult(){
-  html2canvas(result).then(c=>{
+  html2canvas(result).then(canvas=>{
     const a=document.createElement("a");
     a.download="FirstWaveFries_Valentine_Coupon.png";
-    a.href=c.toDataURL();
+    a.href=canvas.toDataURL();
     a.click();
     download.style.display="none";
   });
